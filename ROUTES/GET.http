@@ -1,0 +1,39 @@
+###
+GET  http://localhost:3333/produtos/1
+Content-Type: application/json
+
+###
+GET  http://localhost:3333/produtos/1?size=GG&minPrice=300&maxPrice=300&color=azul
+Content-Type: application/json
+
+###
+GET  http://localhost:3333/departamentos
+Content-Type: application/json
+###
+GET  http://localhost:3333/clientes
+Content-Type: application/json
+###
+GET  http://localhost:3333/enderecos
+Content-Type: application/json
+###
+GET  http://localhost:3333/admin
+Content-Type: application/json
+###
+GET  http://localhost:3333/logins
+Content-Type: application/json
+###
+GET  http://localhost:3333/pedidos
+Content-Type: application/json
+###
+GET  http://localhost:3333/produtosEstoque
+Content-Type: application/json
+
+###
+GET  http://localhost:3333/itensCarrinho/1
+Content-Type: application/json
+###
+GET  http://localhost:3333/endereco/1
+Content-Type: application/json
+###
+GET  http://localhost:3333/pedidos/1
+Content-Type: application/json

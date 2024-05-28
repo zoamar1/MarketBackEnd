@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Products {
+  id                Int     @id @default(autoincrement())
+  name              String
+  price             Float
+  priceWithDiscount Float?
+  departmentId      Int     @unique
+  description       String?
+  color             String
+  slug              String
+  forSale           Boolean
+
+  itemProduct storageProduct[]
+  Orders      Orders[]
+  CartItems   CartItem[]
+  Department  Departments      @relation(fields: [departmentId], references: [id])
+}
+
+model storageProduct {
+  id        Int    @id @default(autoincrement())
+  productId Int
+  size      String
+  storage   Int
+
+  Product Products @relation(fields: [productId], references: [id])
+}
+
+model Login {
+  id        Int        @id @default(autoincrement())
+  email     String
+  password  String
+  Admin     Admin?
+  Customers Customers?
+}
+
+model Addresses {
+  id         Int        @id @default(autoincrement())
+  zip_code   String
+  state      String
+  city       String
+  street     String
+  number     Int
+  complement String?
+  Customers  Customers?
+}
+
+model Customers {
+  id        Int    @id @default(autoincrement())
+  name      String
+  loginId   Int    @unique
+  addressId Int?   @unique
+
+  Login   Login      @relation(fields: [loginId], references: [id])
+  Address Addresses? @relation(fields: [addressId], references: [id])
+  Orders  Orders[]
+  Cart    Cart?
+}
+
+model Cart {
+  id          Int @id @default(autoincrement())
+  customersId Int @unique
+
+  CartItems CartItem[]
+  Customer  Customers  @relation(fields: [customersId], references: [id])
+}
+
+model CartItem {
+  id        Int @id @default(autoincrement())
+  cartId    Int
+  productId Int
+  qty       Int
+
+  Cart    Cart     @relation(fields: [cartId], references: [id])
+  Product Products @relation(fields: [productId], references: [id])
+}
+
+model Orders {
+  id               Int    @id @default(autoincrement())
+  customerId       Int
+  productId        Int
+  productStorageId Int
+  status           String
+  token            String @default(uuid())
+
+  Product  Products  @relation(fields: [productId], references: [id])
+  Customer Customers @relation(fields: [customerId], references: [id])
+}
+
+model Admin {
+  id      Int     @id @default(autoincrement())
+  name    String?
+  loginId Int     @unique
+  sector  String
+
+  Login Login @relation(fields: [loginId], references: [id])
+}
+
+//
+
+model Departments {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Product Products?
+}

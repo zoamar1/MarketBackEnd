@@ -1,0 +1,95 @@
+POST http://localhost:3333/clientes
+Content-Type: application/json
+
+{
+  "name": "Gand",
+  "loginId": 1,
+  "addressId": null
+}
+
+###
+
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+  "email": "testeses",
+  "password": "e53252wqaeawaewe"
+}
+###
+POST http://localhost:3333/departamento
+Content-Type: application/json
+
+{
+  "name": "moletom"
+}
+
+###
+POST http://localhost:3333/produtos/
+Content-Type: application/json
+
+{
+  "name": "Moletom Mengao",
+  "price": 350,
+  "priceWithDiscount": 300,
+  "discount": 345,
+  "description": "6 acha que o flamengo é time",
+  "color": "azul",
+  "departmentName": "moletom"
+}
+
+###
+POST http://localhost:3333/produtos/estoque
+Content-Type: application/json
+
+{
+  "size": "GG",
+  "storage": 500,
+  "productName": "moletom-mengao"
+}
+
+//////////
+
+###
+POST http://localhost:3333/endereco
+Content-Type: application/json
+
+{
+  "zip_code": "4444444-444",
+  "state": "lets go",
+  "city": "curotiba",
+  "street": "holando streata",
+  "number": 15,
+  "complement": "testac"
+}
+
+###
+POST http://localhost:3333/clientes/1/carrinho
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "qty": 50
+}
+
+
+###
+POST http://localhost:3333/pedidos
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "customerId": 1,
+  "productStorageId": 1,
+  "status": "CHEGOU"
+}
+
+###
+POST http://localhost:3333/admin
+Content-Type: application/json
+
+{
+  "name": "teste",
+  "loginId": 1,
+  "sector": "varios"
+}

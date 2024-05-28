@@ -1,0 +1,12 @@
+###
+DELETE  http://localhost:3333/admin/1
+Content-Type: application/json
+###
+DELETE  http://localhost:3333/itensCarrinho/2
+Content-Type: application/json
+###
+DELETE  http://localhost:3333/produtos/1/GG
+Content-Type: application/json
+###
+DELETE  http://localhost:3333/endereco/1
+Content-Type: application/json
