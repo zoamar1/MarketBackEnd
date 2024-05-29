@@ -26,6 +26,8 @@ import { deleteStorageProductByProductId } from "./routes/storageProduct/deleteS
 import { postAdmin } from "./routes/admin/postAdmin";
 import { deleteCartItemById } from "./routes/cartItem/deleteCartItemById";
 import { deleteAddressById } from "./routes/address/deleteAddressById";
+import { putProductChangeStateForSale } from "./routes/product/putProductChangeStateForSALE";
+
 
 
 const app = fastify()
@@ -62,6 +64,8 @@ app.register(deleteAdminById)
 app.register(deleteStorageProductByProductId)
 app.register(deleteCartItemById)
 app.register(deleteAddressById)
+
+app.register(putProductChangeStateForSale)
 
 
 app.listen({port: 3333}).then(() => {

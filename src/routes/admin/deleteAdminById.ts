@@ -23,12 +23,20 @@ export async function deleteAdminById(app:FastifyInstance) {
       if (!findAdmin){
         return reply.status(404).send({message: "Admin not found"})
       }
+      
+      const emailId = findAdmin.loginId
 
       const deleteAdmin = await prisma.admin.delete({
         where:{
           id,
         }
       })
+
+      const deleteLogin = await prisma.login.delete({
+        where:{
+          id: emailId
+        }
+      }) 
  
       return reply.status(200).send({ message: "Admin deleted" });
 

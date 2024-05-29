@@ -1,0 +1,9 @@
+###
+PUT http://localhost:3333/produto/aVenda
+Content-Type: application/json
+
+{
+  "id": 1,
+  "boolean": true
+}
+###
