@@ -26,48 +26,48 @@ import { deleteStorageProductByProductId } from "./routes/storageProduct/deleteS
 import { postAdmin } from "./routes/admin/postAdmin";
 import { deleteCartItemById } from "./routes/cartItem/deleteCartItemById";
 import { deleteAddressById } from "./routes/address/deleteAddressById";
-import { putProductChangeStateForSale } from "./routes/product/putProductChangeStateForSALE";
+import { putProductChangeStateForSale } from "./routes/product/putProductChangeStateForSale";
 
 
-
-const app = fastify()
-
+const app = fastify();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-app.register(postCustomer)
-app.register(postProduct)
-app.register(postLogin)
-app.register(postDepartment)
-app.register(postStorageProduct)
-app.register(postAddresss)
-app.register(postCartItem)
-app.register(postOrder)
-app.register(postAdmin)
+app.register(postCustomer);
+app.register(postProduct);
+app.register(postLogin);
+app.register(postDepartment);
+app.register(postStorageProduct);
+app.register(postAddresss);
+app.register(postCartItem);
+app.register(postOrder);
+app.register(postAdmin);
 
-app.register(getProductsFromDepartment)
-app.register(getAllDepartments)
-app.register(getAllCustomers)
-app.register(getAllAddresses)
-app.register(getAllAdmins)
-app.register(getAllCartItems)
-app.register(getAllLogins)
-app.register(getAllOrders)
-app.register(getAllProducts)
-app.register(getAllStorageProducts)
-app.register(getCartItemsFromCustomer)
-app.register(getAddressesFromCustomer)
-app.register(getOrdersFromUsers)
+app.register(getProductsFromDepartment);
+app.register(getAllDepartments);
+app.register(getAllCustomers);
+app.register(getAllAddresses);
+app.register(getAllAdmins);
+app.register(getAllCartItems);
+app.register(getAllLogins);
+app.register(getAllOrders);
+app.register(getAllProducts);
+app.register(getAllStorageProducts);
+app.register(getCartItemsFromCustomer);
+app.register(getAddressesFromCustomer);
+app.register(getOrdersFromUsers);
 
-app.register(deleteAdminById)
-app.register(deleteStorageProductByProductId)
-app.register(deleteCartItemById)
-app.register(deleteAddressById)
+app.register(deleteAdminById);
+app.register(deleteStorageProductByProductId);
+app.register(deleteCartItemById);
+app.register(deleteAddressById);
 
-app.register(putProductChangeStateForSale)
+app.register(putProductChangeStateForSale);
 
+// Utilize a variável de ambiente PORT fornecida pelo Render
+const port = Number(process.env.PORT) || 3333;
 
-app.listen({port: 3333}).then(() => {
-  console.log("HTTP server running! http://localhost:3333")
+app.listen({ port, host: '0.0.0.0' }).then(() => {
+  console.log(`HTTP server running! http://localhost:${port}`)
 })
