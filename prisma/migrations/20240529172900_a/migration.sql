@@ -8,23 +8,17 @@ CREATE TABLE "Products" (
     "description" TEXT,
     "color" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
+    "forSale" BOOLEAN NOT NULL,
     CONSTRAINT "Products_departmentId_fkey" FOREIGN KEY ("departmentId") REFERENCES "Departments" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "storageProduct" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "productForSaleId" INTEGER NOT NULL,
+    "productId" INTEGER NOT NULL,
     "size" TEXT NOT NULL,
     "storage" INTEGER NOT NULL,
-    CONSTRAINT "storageProduct_productForSaleId_fkey" FOREIGN KEY ("productForSaleId") REFERENCES "productsForSale" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "productsForSale" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "productId" INTEGER NOT NULL,
-    CONSTRAINT "productsForSale_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "storageProduct_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
