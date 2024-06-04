@@ -7,3 +7,35 @@ Content-Type: application/json
   "boolean": true
 }
 ###
+PUT http://localhost:3333/clientes/endereco
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "addressId": 1
+}
+###
+PUT http://localhost:3333/login/mudarSenha
+Content-Type: application/json
+
+{
+  "email": "testeses@gmail.com",
+  "newPassword": 1
+}
+###
+PUT http://localhost:3333/pedidos/status
+Content-Type: application/json
+
+{
+  "id": 1,
+  "status": "Enviado"
+}
+###
+PUT http://localhost:3333/produtosEstoque/estoque
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "size": "GG",
+  "storage": 800
+}

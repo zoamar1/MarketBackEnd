@@ -35,5 +35,8 @@ Content-Type: application/json
 GET  http://localhost:3333/endereco/1
 Content-Type: application/json
 ###
-GET  http://localhost:3333/pedidos/1
+GET  http://localhost:3333/pedido/1
+Content-Type: application/json
+###
+GET  http://localhost:3333/produto/1/estoque
 Content-Type: application/json

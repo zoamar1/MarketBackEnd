@@ -10,8 +10,8 @@ export async function postLogin(app: FastifyInstance) {
   .post('/login', {
     schema: {
       body: z.object({
-        email: z.string(),
-        password: z.string()
+        email: z.string().email(),
+        password: z.string().min(8).max(25)
       }),
       response: {
         201: z.object({message: z.string()})

@@ -4,7 +4,7 @@ import z from "zod";
 import { prisma } from "../../lib/prisma";
 
 export async function getOrdersFromUsers(app:FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get('/pedidos/:userId', {
+  app.withTypeProvider<ZodTypeProvider>().get('/pedido/:userId', {
     schema:{
       params:z.object({
         userId: z.preprocess(val=>Number(val), z.number().int())

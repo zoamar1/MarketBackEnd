@@ -27,6 +27,11 @@ import { postAdmin } from "./routes/admin/postAdmin";
 import { deleteCartItemById } from "./routes/cartItem/deleteCartItemById";
 import { deleteAddressById } from "./routes/address/deleteAddressById";
 import { putProductChangeStateForSale } from "./routes/product/putProductChangeStateForSale";
+import { putUpdateCustomerAddress } from "./routes/customer/putUpdateCustomerAddress";
+import { putUpdatePasswordByEmail } from "./routes/login/putUpdatePasswordByEmail";
+import { putUpdateOrderStatus } from "./routes/order/putUpdateOrderStatus";
+import { putUpdateStorage } from "./routes/storageProduct/putUpdateStorage";
+import { getStorageProductsFromProduct } from "./routes/storageProduct/getStorageProductsFromProduct";
 
 
 const app = fastify();
@@ -57,6 +62,7 @@ app.register(getAllStorageProducts);
 app.register(getCartItemsFromCustomer);
 app.register(getAddressesFromCustomer);
 app.register(getOrdersFromUsers);
+app.register(getStorageProductsFromProduct);
 
 app.register(deleteAdminById);
 app.register(deleteStorageProductByProductId);
@@ -64,8 +70,12 @@ app.register(deleteCartItemById);
 app.register(deleteAddressById);
 
 app.register(putProductChangeStateForSale);
+app.register(putUpdateCustomerAddress);
+app.register(putUpdatePasswordByEmail);
+app.register(putUpdateOrderStatus);
+app.register(putUpdateStorage)
 
-// Utilize a variável de ambiente PORT fornecida pelo Render
+
 const port = Number(process.env.PORT) || 3333;
 
 app.listen({ port, host: '0.0.0.0' }).then(() => {
