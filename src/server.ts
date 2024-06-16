@@ -1,4 +1,5 @@
 import fastify from "fastify";
+
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { postCustomer } from "./routes/customer/postCustomer";
 import { postProduct } from "./routes/product/postProduct";
@@ -77,6 +78,7 @@ app.register(putUpdateStorage)
 
 
 const port = Number(process.env.PORT) || 3333;
+
 
 app.listen({ port, host: '0.0.0.0' }).then(() => {
   console.log(`HTTP server running! http://localhost:${port}`)

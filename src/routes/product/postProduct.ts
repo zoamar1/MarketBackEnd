@@ -11,6 +11,7 @@ export async function postProduct(app: FastifyInstance) {
       schema: {
         body: z.object({
           name: z.string(),
+          image: z.string(),
           price: z.number().finite(),
           priceWithDiscount: z.number().finite().nullable(),
           description: z.string().nullable(),
@@ -28,7 +29,7 @@ export async function postProduct(app: FastifyInstance) {
         }
       }
     }, async (request, reply) => {
-      const { name, price, priceWithDiscount, description, color, departmentName } = request.body
+      const { name, image, price, priceWithDiscount, description, color, departmentName } = request.body
       console.log(departmentName)
 
       const department = await prisma.departments.findFirst({
@@ -46,6 +47,7 @@ export async function postProduct(app: FastifyInstance) {
       const createProduct = await prisma.products.create({
         data: {
           name,
+          image,
           price,
           priceWithDiscount,
           departmentId: department.id,
@@ -59,5 +61,3 @@ export async function postProduct(app: FastifyInstance) {
       return reply.status(201).send({ message: "Product Created", slug: slugProduct})
     })
 }
-
-

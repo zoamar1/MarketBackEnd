@@ -3,8 +3,6 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
 
-
-
 export async function getProductsFromDepartment(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/produtos/:departmentId', {
     schema: {
@@ -37,7 +35,7 @@ export async function getProductsFromDepartment(app: FastifyInstance) {
       include: {itemProduct: true}
     })}
     
-    
+  
     if (products.length === 0){
       return reply.status(404).send("No product was found")
     }
@@ -84,7 +82,7 @@ export async function getProductsFromDepartment(app: FastifyInstance) {
     if(color){
       products = products.filter(product => product.color === color)
     }
-
+    
     return reply.status(200).send(products)
   }) 
 }

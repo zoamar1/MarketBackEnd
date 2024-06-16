@@ -13,6 +13,7 @@ datasource db {
 model Products {
   id                Int     @id @default(autoincrement())
   name              String
+  image             String
   price             Float
   priceWithDiscount Float?
   departmentId      Int     @unique
