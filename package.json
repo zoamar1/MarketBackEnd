@@ -29,6 +29,7 @@
     "fastify": "^4.26.2",
     "fastify-type-provider-zod": "^1.1.9",
     "form-data": "^4.0.0",
+    "node": "20.14.0",
     "zod": "^3.23.0"
   }
 }
