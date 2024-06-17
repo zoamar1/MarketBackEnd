@@ -1,5 +1,6 @@
 import fastify from "fastify";
-
+import { join } from "path";
+import fastifyStatic from "@fastify/static";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { postCustomer } from "./routes/customer/postCustomer";
 import { postProduct } from "./routes/product/postProduct";
@@ -34,12 +35,17 @@ import { putUpdateOrderStatus } from "./routes/order/putUpdateOrderStatus";
 import { putUpdateStorage } from "./routes/storageProduct/putUpdateStorage";
 import { getStorageProductsFromProduct } from "./routes/storageProduct/getStorageProductsFromProduct";
 
-
 const app = fastify();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
+app.register(fastifyStatic, {
+  root: join(__dirname, '../src/public/images'), 
+  prefix: '/images/',
+});
+
+// Registro das suas rotas
 app.register(postCustomer);
 app.register(postProduct);
 app.register(postLogin);
@@ -63,7 +69,6 @@ app.register(getAllStorageProducts);
 app.register(getCartItemsFromCustomer);
 app.register(getAddressesFromCustomer);
 app.register(getOrdersFromUsers);
-app.register(getStorageProductsFromProduct);
 
 app.register(deleteAdminById);
 app.register(deleteStorageProductByProductId);
@@ -74,12 +79,10 @@ app.register(putProductChangeStateForSale);
 app.register(putUpdateCustomerAddress);
 app.register(putUpdatePasswordByEmail);
 app.register(putUpdateOrderStatus);
-app.register(putUpdateStorage)
-
+app.register(putUpdateStorage);
 
 const port = Number(process.env.PORT) || 3333;
 
-
 app.listen({ port, host: '0.0.0.0' }).then(() => {
-  console.log(`HTTP server running! http://localhost:${port}`)
-})
+  console.log(`HTTP server running! http://localhost:${port}`);
+});

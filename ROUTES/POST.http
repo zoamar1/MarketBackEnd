@@ -31,7 +31,7 @@ Content-Type: application/json
 {
   "name": "Moletom Mengao",
   "price": 350,
-  "image": "C:\\Users\\mathe\\Área de Trabalho\\3fde3cd0204f481372b537f1250e28ad.jpg",
+  "image": "C:/Users/mathe/Imagens/house.jpg",
   "priceWithDiscount": 300,
   "discount": 345,
   "description": "6 acha que o flamengo é time",
