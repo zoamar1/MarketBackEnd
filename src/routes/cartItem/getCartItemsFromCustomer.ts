@@ -10,6 +10,8 @@ export async function getCartItemsFromCustomer(app:FastifyInstance) {
   .withTypeProvider<ZodTypeProvider>().get('/itensCarrinho/:customersId',
     {
       schema:{
+        summary: 'Get cartItems from customer by ID',
+        tags: ['cartItem'],
         params:z.object({
           customersId: z.preprocess((val) => Number(val), z.number().int())
         })

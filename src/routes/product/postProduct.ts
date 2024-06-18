@@ -22,6 +22,8 @@ export async function postProduct(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .post('/produtos/', {
       schema: {
+        summary: 'Post a product',
+        tags: ['product'],
         body: z.object({
           name: z.string(),
           image: z.string(),

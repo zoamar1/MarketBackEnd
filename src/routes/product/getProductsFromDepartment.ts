@@ -14,6 +14,8 @@ if (!fs.existsSync(publicImagesDir)) {
 export async function getProductsFromDepartment(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/produtos/:departmentId', {
     schema: {
+      summary: 'Get all products from a department',
+      tags: ['product'],
       params: z.object({
         departmentId: z.preprocess(val => Number(val), z.number().int())
       }),

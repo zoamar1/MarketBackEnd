@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function postOrder(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/pedidos', {
     schema: {
+      summary: 'Create an order',
+      tags: ['order'],
       body: z.object({
         productId: z.number().int(),
         customerId: z.number().int(),

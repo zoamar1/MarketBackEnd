@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function getAddressesFromCustomer(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/endereco/:userId', {
     schema: {
+      summary: 'Get the address from a customer',
+      tags: ['address'],
       params: z.object({
         userId: z.preprocess(val=>Number(val), z.number().int())
       })

@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function putUpdatePasswordByEmail(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/login/mudarSenha',{
     schema:{
+    summary: 'Update password from a email by ID',
+    tags: ['login'],
     body: z.object({
       email: z.string().email(),
       newPassword: z.string().min(1).max(25),

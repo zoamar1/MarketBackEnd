@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function deleteAddressById(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete('/endereco/:addressId', {
     schema:{
+      summary: 'Delete a address by ID',
+      tags: ['address'],
       params:z.object({
         addressId: z.preprocess(val=> Number(val), z.number().int())
       })

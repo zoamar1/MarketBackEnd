@@ -7,6 +7,8 @@ import z from "zod";
 export async function getAllOrders(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/pedidos', {
     schema: {
+      summary: 'Get all orders',
+      tags: ['order'],
       response:{
         200:z.object({array: z.any()}),
         404:z.object({message: z.string()}),

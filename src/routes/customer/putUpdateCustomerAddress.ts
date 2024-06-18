@@ -7,6 +7,8 @@ export async function putUpdateCustomerAddress(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/clientes/endereco',
     {
       schema: {
+        summary: 'Update the address from a customer',
+        tags: ['customer'],
         body:z.object({
           customerId: z.number().int(),
           addressId: z.number().int()

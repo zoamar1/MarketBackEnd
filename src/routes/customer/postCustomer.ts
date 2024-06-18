@@ -11,6 +11,8 @@ export async function postCustomer(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .post('/clientes', {
       schema: {
+        summary: 'Post a customer',
+        tags: ['customer'],
         body: z.object({
           name: z.string(),
           loginId: z.number().int(),

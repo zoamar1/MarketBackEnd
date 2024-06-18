@@ -10,6 +10,8 @@ export async function postCartItem(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .post('/clientes/:customerId/carrinho', {
       schema: {
+        summary: 'Post a cartItem',
+        tags: ['cartItem'],
         body: z.object({
           productId: z.number().int()
         }),

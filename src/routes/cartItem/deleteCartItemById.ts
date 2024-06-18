@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function deleteCartItemById(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete('/itensCarrinho/:cartItemId', {
     schema:{
+      summary: 'Delete cartItem by ID',
+      tags: ['cartItem'],
       params: z.object({
         cartItemId: z.preprocess(val =>Number(val), z.number().int())
       })

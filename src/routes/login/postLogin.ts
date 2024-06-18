@@ -11,6 +11,8 @@ export async function postLogin(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .post('/login', {
       schema: {
+        summary: 'Update password from a email by ID',
+        tags: ['login'],
         body: z.object({
           email: z.string().email(),
           password: z.string().min(8).max(25)

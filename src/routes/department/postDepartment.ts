@@ -7,6 +7,8 @@ import { createSlug } from "../../utils/createSlug";
 export async function postDepartment(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/departamento', {
     schema: {
+      summary: 'Post a department',
+      tags: ['department'],
       body: z.object({
         name: z.string()
       }),
@@ -15,7 +17,6 @@ export async function postDepartment(app: FastifyInstance) {
       }
     }
   }, async (request, reply) => { 
-
     const name = request.body.name
     const department = createSlug(name)
 

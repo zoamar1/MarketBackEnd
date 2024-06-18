@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function putUpdateOrderStatus(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/pedidos/status', {
     schema: {
+      summary: 'Update the status of an order by ID',
+      tags: ['order'],
       body: z.object({
         id: z.number().int(),
         status: z.string()

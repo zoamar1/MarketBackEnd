@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function getOrdersFromUsers(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/pedido/:userId', {
     schema:{
+      summary: 'Create an order from a customer by ID',
+      tags: ['order'],
       params:z.object({
         userId: z.preprocess(val=>Number(val), z.number().int())
       })

@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function deleteAdminById(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete('/admin/:id', {
     schema:{
+      summary: 'Delete a admin',
+      tags: ['admin'],
       params:z.object({
         id: z.preprocess(val=>Number(val), z.number().int())
       })

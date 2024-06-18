@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function postAddresss(app : FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/endereco', {
     schema:{
+      summary: 'Post an address',
+      tags: ['address'],
       body: z.object({
         zip_code: z.string(),
         state: z.string(),

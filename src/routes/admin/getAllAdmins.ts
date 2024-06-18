@@ -7,6 +7,8 @@ import z from "zod";
 export async function getAllAdmins(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/admin', {
     schema: {
+      summary: 'Get all admins',
+      tags: ['admin'],
       response:{
         200:z.object({array: z.any()}),
         404:z.object({message: z.string()}),

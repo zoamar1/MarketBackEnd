@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function putProductChangeStateForSale(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/produto/aVenda', {
     schema:{
+      summary: 'Change the value FOR SALE from a product by ID',
+      tags: ['product'],
       body:z.object({
         id: z.number().int(),
         boolean: z.boolean()

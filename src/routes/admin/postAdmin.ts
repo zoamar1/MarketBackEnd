@@ -7,6 +7,8 @@ import { prisma } from "../../lib/prisma";
 export async function postAdmin(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/admin', {
     schema:{
+      summary: 'Post an admin',
+      tags: ['admin'],
       body: z.object({
         name: z.string(),
         loginId: z.number().int(),

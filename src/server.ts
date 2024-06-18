@@ -2,7 +2,7 @@ import fastify from "fastify";
 import { join } from "path";
 import cors from '@fastify/cors';
 import fastifyStatic from "@fastify/static";
-import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
+import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { postCustomer } from "./routes/customer/postCustomer";
 import { postProduct } from "./routes/product/postProduct";
 import { postLogin } from "./routes/login/postLogin";
@@ -35,8 +35,27 @@ import { putUpdatePasswordByEmail } from "./routes/login/putUpdatePasswordByEmai
 import { putUpdateOrderStatus } from "./routes/order/putUpdateOrderStatus";
 import { putUpdateStorage } from "./routes/storageProduct/putUpdateStorage";
 import { getStorageProductsFromProduct } from "./routes/storageProduct/getStorageProductsFromProduct";
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 
 const app = fastify();
+
+app.register(fastifySwagger,{
+  swagger:{
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    info: {
+      title: 'zoamar',
+      description: 'Especificações da API para o back-end da aplicação Zoamar construída',
+      version: '1.0.0'
+    }
+  },
+  transform: jsonSchemaTransform
+})
+
+app.register(fastifySwaggerUi, {
+  routePrefix: '/docs'
+})
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
