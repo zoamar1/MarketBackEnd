@@ -83,8 +83,8 @@ app.register(putUpdateOrderStatus);
 app.register(putUpdateStorage);
 
 app.register(cors, {
-  origin: "*", // Allow all origins
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"], 
 });
 
 const port = Number(process.env.PORT) || 3333;
