@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function deleteStorageProductByProductId(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete('/produtos/:productId/:size', {
     schema:{
+      summary: 'Delete a storageProduct by the ID of the product',
+      tags: ['storageProduct'],
       params:z.object({
         productId:z.preprocess(val=>Number(val), z.number().int()),
         size: z.string()

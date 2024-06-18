@@ -8,6 +8,8 @@ export async function postStorageProduct(app: FastifyInstance) {
   .withTypeProvider<ZodTypeProvider>()
   .post('/produtos/estoque',{
     schema:{
+      summary: 'Create a storageProduct',
+      tags: ['storageProduct'],
       body:z.object({
         size: z.string(),
         storage: z.number().int(),

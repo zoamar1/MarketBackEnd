@@ -7,6 +7,8 @@ import { prisma } from "../../lib/prisma";
 export async function putUpdateStorage(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/produtosEstoque/estoque', {
     schema:{
+      summary: 'Update the storage of a storageProduct by the size and ID of the product',
+      tags: ['storageProduct'],
       body:z.object({
         productId:z.number().int(),
         size:z.string(),

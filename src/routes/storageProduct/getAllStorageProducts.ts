@@ -7,6 +7,8 @@ import z from "zod";
 export async function getAllStorageProducts(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/produtosEstoque', {
     schema: {
+      summary: 'Get all storageProducts',
+      tags: ['storageProduct'],
       response:{
         200:z.object({array: z.any()}),
         404:z.object({message: z.string()}),

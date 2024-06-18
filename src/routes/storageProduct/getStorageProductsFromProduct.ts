@@ -6,6 +6,8 @@ import { prisma } from "../../lib/prisma";
 export async function getStorageProductsFromProduct(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/produto/:productId/estoque', {
     schema:{
+      summary: 'Get the storageProducts from a product by ID',
+      tags: ['storageProduct'],
       params: z.object({
         productId: z.preprocess(val=>Number(val), z.number().int())
       })
