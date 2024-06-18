@@ -94,7 +94,7 @@ export async function getProductsFromDepartment(app: FastifyInstance) {
           await base64ToImage(product.image, imagePath);
           product.image = imagePath;
         } catch (error) {
-          console.error(`Erro ao salvar a imagem para o produto ${product.id}:`, error);
+          console.error(`Error saving image for product ${product.id}:`, error);
         }
       }
     }

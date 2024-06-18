@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import { join } from "path";
+import cors from '@fastify/cors';
 import fastifyStatic from "@fastify/static";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { postCustomer } from "./routes/customer/postCustomer";
@@ -45,7 +46,6 @@ app.register(fastifyStatic, {
   prefix: '/images/',
 });
 
-// Registro das suas rotas
 app.register(postCustomer);
 app.register(postProduct);
 app.register(postLogin);
@@ -69,6 +69,7 @@ app.register(getAllStorageProducts);
 app.register(getCartItemsFromCustomer);
 app.register(getAddressesFromCustomer);
 app.register(getOrdersFromUsers);
+app.register(getStorageProductsFromProduct);
 
 app.register(deleteAdminById);
 app.register(deleteStorageProductByProductId);
@@ -80,6 +81,11 @@ app.register(putUpdateCustomerAddress);
 app.register(putUpdatePasswordByEmail);
 app.register(putUpdateOrderStatus);
 app.register(putUpdateStorage);
+
+app.register(cors, {
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+});
 
 const port = Number(process.env.PORT) || 3333;
 
