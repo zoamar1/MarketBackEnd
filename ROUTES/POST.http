@@ -29,7 +29,7 @@ POST http://localhost:3333/produtos/
 Content-Type: application/json
 
 {
-  "name": "Moletom Mengao",
+  "name": "Teste eawbeawba Mengao",
   "price": 350,
   "image": "C:/Users/mathe/Imagens/house.jpg",
   "priceWithDiscount": 300,

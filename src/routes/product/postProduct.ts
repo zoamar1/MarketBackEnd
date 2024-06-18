@@ -7,8 +7,6 @@ import fs from "fs";
 import { promisify } from "util";
 
 const readFile = promisify(fs.readFile);
-
-// Função para converter imagem em base64
 async function convertImageToBase64(imagePath: string): Promise<string> {
   try {
     const imageBuffer = await readFile(imagePath);

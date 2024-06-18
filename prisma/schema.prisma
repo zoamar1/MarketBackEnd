@@ -16,7 +16,7 @@ model Products {
   image             String
   price             Float
   priceWithDiscount Float?
-  departmentId      Int     @unique
+  departmentId      Int
   description       String?
   color             String
   slug              String
@@ -110,7 +110,7 @@ model Admin {
 //
 
 model Departments {
-  id      Int       @id @default(autoincrement())
+  id      Int        @id @default(autoincrement())
   name    String
-  Product Products?
+  Product Products[]
 }
