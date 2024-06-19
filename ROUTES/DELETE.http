@@ -1,7 +1,4 @@
 ###
-DELETE  http://localhost:3333/admin/1
-Content-Type: application/json
-###
 DELETE  http://localhost:3333/itensCarrinho/2
 Content-Type: application/json
 ###

@@ -38,11 +38,11 @@ model storageProduct {
 }
 
 model Login {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
   password String
+  isAdmin  Boolean
 
-  Admin     Admin?
   Customers Customers?
 }
 
@@ -58,7 +58,7 @@ model Addresses {
 }
 
 model Customers {
-  id        Int    @id @default(autoincrement())
+  id        Int    @id
   name      String
   loginId   Int    @unique
   addressId Int?   @unique
@@ -70,7 +70,7 @@ model Customers {
 }
 
 model Cart {
-  id          Int @id @default(autoincrement())
+  id          Int @id
   customersId Int @unique
 
   CartItems CartItem[]
@@ -98,17 +98,6 @@ model Orders {
   Product  Products  @relation(fields: [productId], references: [id])
   Customer Customers @relation(fields: [customerId], references: [id])
 }
-
-model Admin {
-  id      Int     @id @default(autoincrement())
-  name    String?
-  loginId Int     @unique
-  sector  String
-
-  Login Login @relation(fields: [loginId], references: [id])
-}
-
-//
 
 model Departments {
   id      Int        @id @default(autoincrement())

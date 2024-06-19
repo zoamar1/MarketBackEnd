@@ -29,14 +29,18 @@ GET  http://localhost:3333/produtosEstoque
 Content-Type: application/json
 
 ###
-GET  http://localhost:3333/itensCarrinho/1
+GET  http://localhost:3333/itensCarrinho/usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZXNlc0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4MDY2Mjl9.ZZHKcX0S_Rm_KuLzOm7hoFVlmr7RQzGJSoj17TnCrjY
 Content-Type: application/json
 ###
-GET  http://localhost:3333/endereco/1
+GET  http://localhost:3333/endereco/usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZXNlc0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4MDY2Mjl9.ZZHKcX0S_Rm_KuLzOm7hoFVlmr7RQzGJSoj17TnCrjY
 Content-Type: application/json
 ###
-GET  http://localhost:3333/pedido/1
+GET  http://localhost:3333/pedidos/usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZXNlc0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4MDY2Mjl9.ZZHKcX0S_Rm_KuLzOm7hoFVlmr7RQzGJSoj17TnCrjY
 Content-Type: application/json
+
 ###
 GET  http://localhost:3333/produto/1/estoque
 Content-Type: application/json

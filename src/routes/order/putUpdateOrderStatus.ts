@@ -8,6 +8,9 @@ export async function putUpdateOrderStatus(app: FastifyInstance) {
     schema: {
       summary: 'Update the status of an order by ID',
       tags: ['order'],
+      headers: z.object({
+        token: z.string(),
+      }),
       body: z.object({
         id: z.number().int(),
         status: z.string()

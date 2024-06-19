@@ -9,6 +9,9 @@ export async function putUpdateCustomerAddress(app: FastifyInstance) {
       schema: {
         summary: 'Update the address from a customer',
         tags: ['customer'],
+        headers: z.object({
+          token: z.string(),
+        }),
         body:z.object({
           customerId: z.number().int(),
           addressId: z.number().int()

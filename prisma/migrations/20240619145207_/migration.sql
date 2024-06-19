@@ -2,6 +2,7 @@
 CREATE TABLE "Products" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
     "price" REAL NOT NULL,
     "priceWithDiscount" REAL,
     "departmentId" INTEGER NOT NULL,
@@ -25,7 +26,8 @@ CREATE TABLE "storageProduct" (
 CREATE TABLE "Login" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "password" TEXT NOT NULL,
+    "isAdmin" BOOLEAN NOT NULL
 );
 
 -- CreateTable
@@ -79,22 +81,10 @@ CREATE TABLE "Orders" (
 );
 
 -- CreateTable
-CREATE TABLE "Admin" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT,
-    "loginId" INTEGER NOT NULL,
-    "sector" TEXT NOT NULL,
-    CONSTRAINT "Admin_loginId_fkey" FOREIGN KEY ("loginId") REFERENCES "Login" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
 CREATE TABLE "Departments" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Products_departmentId_key" ON "Products"("departmentId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Login_email_key" ON "Login"("email");
@@ -107,6 +97,3 @@ CREATE UNIQUE INDEX "Customers_addressId_key" ON "Customers"("addressId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Cart_customersId_key" ON "Cart"("customersId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Admin_loginId_key" ON "Admin"("loginId");

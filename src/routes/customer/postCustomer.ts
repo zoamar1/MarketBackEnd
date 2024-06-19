@@ -32,6 +32,7 @@ export async function postCustomer(app: FastifyInstance) {
       try {
         const event = await prisma.customers.create({
           data: {
+            id: loginId,
             name,
             loginId,
             addressId,
@@ -40,6 +41,7 @@ export async function postCustomer(app: FastifyInstance) {
 
         const cart = await prisma.cart.create({
           data: {
+            id: event.id,
             customersId: event.id
           }
         })

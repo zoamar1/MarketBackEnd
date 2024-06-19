@@ -2,26 +2,29 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
+import authenticate from "../../utils/authenticate";
 
-export async function getOrdersFromUsers(app:FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get('/pedido/:userId', {
-    schema:{
-      summary: 'Create an order from a customer by ID',
+export async function getOrdersFromUsers(app: FastifyInstance) {
+  app.withTypeProvider<ZodTypeProvider>().get('/pedidos/usuario', {
+    schema: {
+      summary: 'Get orders from the logged-in customer',
       tags: ['order'],
-      params:z.object({
-        userId: z.preprocess(val=>Number(val), z.number().int())
-      })
+      headers: z.object({
+        authorization: z.string(),
+      }),
+    },
+    preHandler: [authenticate]
+  }, async (request, reply) => {
+    const userId = (request as any).user.id
+
+    const ordersFromUser = await prisma.orders.findMany({
+      where: { customerId: userId }
+    });
+
+    if (ordersFromUser.length === 0) {
+      return reply.status(404).send('No order was found');
     }
-  }, async (request,reply) => {
-    const {userId} = request.params
 
-    const ordersFromUser = await prisma.customers.findMany({
-      where:{id: userId}, select:{Orders:true}
-    })
-
-    if(ordersFromUser.length === 0){
-      return reply.status(404).send('No order was found')
-     }
-     return reply.status(200).send(ordersFromUser)
-  })
+    return reply.status(200).send(ordersFromUser);
+  });
 }

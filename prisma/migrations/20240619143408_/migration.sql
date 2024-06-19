@@ -2,6 +2,7 @@
 CREATE TABLE "Products" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
     "price" REAL NOT NULL,
     "priceWithDiscount" REAL,
     "departmentId" INTEGER NOT NULL,
@@ -94,7 +95,7 @@ CREATE TABLE "Departments" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Products_departmentId_key" ON "Products"("departmentId");
+CREATE UNIQUE INDEX "Login_email_key" ON "Login"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Customers_loginId_key" ON "Customers"("loginId");

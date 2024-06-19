@@ -2,15 +2,18 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
+import authenticate from "../../utils/authenticate";
 
 export async function postOrder(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/pedidos', {
     schema: {
       summary: 'Create an order',
       tags: ['order'],
+      headers: z.object({
+        authorization: z.string(),
+      }),
       body: z.object({
         productId: z.number().int(),
-        customerId: z.number().int(),
         productStorageId: z.number().int(),
         status: z.string()
       }),
@@ -21,18 +24,25 @@ export async function postOrder(app: FastifyInstance) {
         }),
         404: z.object({
           message: z.string()
-        })
+        }),
+        401:z.string()
       }
-    }
+    },
+    preHandler: [authenticate]
   }, async (request, reply) => {
-    const { productId, customerId, productStorageId, status } = request.body;
+    const { productId, productStorageId, status } = request.body;
+    const userId = (request as any).user?.id;
+
+    if (!userId) {
+      return reply.status(401).send('Unauthorized');
+    }
 
     const [product, customer] = await Promise.all([
       prisma.products.findFirst({
         where: { id: productId }
       }),
       prisma.customers.findFirst({
-        where: { id: customerId }
+        where: { id: userId }
       })
     ]);
 
@@ -46,7 +56,7 @@ export async function postOrder(app: FastifyInstance) {
 
     const createOrder = await prisma.orders.create({
       data: {
-        customerId,
+        customerId: userId,
         productId,
         productStorageId,
         status

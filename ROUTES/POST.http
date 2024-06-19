@@ -3,19 +3,20 @@ Content-Type: application/json
 
 {
   "name": "Gand",
-  "loginId": 1,
+  "loginId": 3,
   "addressId": null
 }
 
 ###
-
-POST http://localhost:3333/login
+POST http://localhost:3333/postLogin
 Content-Type: application/json
 
 {
-  "email": "testeses@gmail.com",
-  "password": "e53252wqaeawaewe"
+  "email": "V@gmail.com",
+  "password": "e53252wqaeawaewe",
+  "isAdmin": false
 }
+
 ###
 POST http://localhost:3333/departamento
 Content-Type: application/json
@@ -54,7 +55,6 @@ Content-Type: application/json
 ###
 POST http://localhost:3333/endereco
 Content-Type: application/json
-
 {
   "zip_code": "4444444-444",
   "state": "lets go",
@@ -67,16 +67,17 @@ Content-Type: application/json
 ###
 POST http://localhost:3333/clientes/1/carrinho
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZXNlc0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4MDc3MDh9.d2aVjsdDyiGV9laecVanaeX1FMyG6zQAleCOoR_1tP0
 
 {
   "productId": 1,
   "qty": 50
 }
 
-
 ###
 POST http://localhost:3333/pedidos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZXNlc0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4MDM2ODV9.IOZuf5S9ehJyO6qtcPFUbvP28B_IrURejIW9ec-rO2o
 
 {
   "productId": 1,
@@ -89,8 +90,34 @@ Content-Type: application/json
 POST http://localhost:3333/admin
 Content-Type: application/json
 
+
 {
   "name": "teste",
-  "loginId": 1,
+  "loginId": 2,
   "sector": "varios"
+}
+###
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+  "email": "testeses@gmail.com",
+  "password": "e53252wqaeawaewe"
+}
+
+###
+POST http://localhost:3333/logout
+Content-Type: application/json
+
+{
+  "email": "testeses@gmail.com",
+  "password": "e53252wqaeawaewe"
+},
+###
+POST http://localhost:3333/login/isAdmin
+Content-Type: application/json
+
+{
+  "email": "V@gmail.com",
+  "password": "e53252wqaeawaewe"
 }

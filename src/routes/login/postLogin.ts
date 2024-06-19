@@ -4,18 +4,19 @@ import { z } from "zod"
 import { prisma } from "../../lib/prisma";
 import { Prisma } from "@prisma/client";
 import { error } from "console";
-
+import bcrypt from "bcrypt"
 
 export async function postLogin(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
-    .post('/login', {
+    .post('/postLogin', {
       schema: {
         summary: 'Update password from a email by ID',
         tags: ['login'],
         body: z.object({
           email: z.string().email(),
-          password: z.string().min(8).max(25)
+          password: z.string().min(8).max(25),
+          isAdmin: z.boolean()
         }),
         response: {
           201: z.object({ message: z.string() }),
@@ -24,14 +25,18 @@ export async function postLogin(app: FastifyInstance) {
       }
     }, async (request, reply) => {
       try {
-        const { email, password } = request.body
+        const { email, password, isAdmin } = request.body
+
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const createLogin = await prisma.login.create({
           data: {
             email,
-            password
+            password: hashedPassword,
+            isAdmin
           }
         })
+
         return reply.status(201).send({ message: "Login created" })
 
       } catch (e) {

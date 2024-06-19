@@ -95,9 +95,6 @@ CREATE TABLE "Departments" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Products_departmentId_key" ON "Products"("departmentId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Login_email_key" ON "Login"("email");
 
 -- CreateIndex
