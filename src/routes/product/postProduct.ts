@@ -20,7 +20,7 @@ async function convertImageToBase64(imagePath: string): Promise<string> {
 export async function postProduct(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
-    .post('/produtos/', {
+    .post('/produtos', {
       schema: {
         summary: 'Post a product',
         tags: ['product'],
