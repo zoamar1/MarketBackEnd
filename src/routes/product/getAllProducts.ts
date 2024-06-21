@@ -9,6 +9,8 @@ export async function getAllProducts(app: FastifyInstance) {
     schema: {
       summary: 'Get all products',
       tags: ['product'],
+      querystring:z.object({forSale:z.preprocess(val=>Boolean(val), z.boolean())})
+      ,
       response:{
         200:z.object({array: z.any()}),
         404:z.object({message: z.string()}),
@@ -17,7 +19,12 @@ export async function getAllProducts(app: FastifyInstance) {
     }
   }, async (request, reply) => {
     try {
-      const products = await prisma.products.findMany({where:{}})
+      const forSale = request.query.forSale
+      let products
+      if(forSale !== null){
+         products = await prisma.products.findMany({where:{forSale:true}})
+      }
+      products = await prisma.products.findMany({where:{}})
       if (products.length === 0) {
         return reply.status(404).send({message: "No products was found"})
       }

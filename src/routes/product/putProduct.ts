@@ -6,6 +6,7 @@ import { ZodTypeProvider } from 'fastify-type-provider-zod';
 export async function putProduct(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put('/products/:productId', {
     schema: {
+      tags: ['product'],
       body: z.object({
         productId: z.number().int(),
         name: z.string().optional(),

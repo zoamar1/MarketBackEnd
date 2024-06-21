@@ -1,5 +1,5 @@
 ###
-GET  http://localhost:3333/produtos/1
+GET  http://localhost:3333/produto  
 Content-Type: application/json
 
 ###

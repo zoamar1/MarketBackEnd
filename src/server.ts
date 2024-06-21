@@ -39,6 +39,7 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import { logout } from "./routes/login/logout";
 import { postIsAdmin } from "./routes/login/postIsAdmin";
+import { putProduct } from "./routes/product/putProduct";
 
 const app = fastify();
 
@@ -112,6 +113,7 @@ app.register(putUpdateCustomerAddress);
 app.register(putUpdatePasswordByEmail);
 app.register(putUpdateOrderStatus);
 app.register(putUpdateStorage);
+app.register(putProduct)
 
 app.register(loginLogin)
 app.register(logout)
