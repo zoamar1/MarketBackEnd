@@ -5,7 +5,7 @@ import { prisma } from "../../lib/prisma";
 import authenticate from "../../utils/authenticate";
 
 export async function getCustomerFromToken(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get('/pedidos/token', {
+  app.withTypeProvider<ZodTypeProvider>().get('/usuario/token', {
     schema: {
       summary: 'Get customer from token',
       tags: ['customer'],
