@@ -4,7 +4,7 @@ import z from "zod";
 import { prisma } from "../../lib/prisma";
 import authenticate from "../../utils/authenticate";
 
-export async function getOrdersFromUsers(app: FastifyInstance) {
+export async function getCustomerFromToken(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/pedidos/usuario', {
     schema: {
       summary: 'Get customer from token',
@@ -17,11 +17,11 @@ export async function getOrdersFromUsers(app: FastifyInstance) {
   }, async (request, reply) => {
     const userId = (request as any).user.id
 
-    const customer = await prisma.customer.findUnique({
-      where: { userId, }
+    const customer = await prisma.customers.findUnique({
+      where: { loginId:userId }
     });
 
-    if (customer.length === 0) {
+    if (customer === null) {
       return reply.status(404).send('No order was found');
     }
 
