@@ -55,6 +55,7 @@ export async function loginLogin(app: FastifyInstance) {
         const token = app.jwt.sign({
           id: user.id,
           email: user.email,
+          password: user.password
         });
 
         reply.setCookie("access_token", token, {

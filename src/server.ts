@@ -40,6 +40,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import { logout } from "./routes/login/logout";
 import { postIsAdmin } from "./routes/login/postIsAdmin";
 import { putProduct } from "./routes/product/putProduct";
+import { getCustomerFromToken } from "./routes/customer/getCustomerFromToken";
 
 const app = fastify();
 
@@ -118,6 +119,7 @@ app.register(putProduct)
 app.register(loginLogin)
 app.register(logout)
 app.register(postIsAdmin)
+app.register(getCustomerFromToken)
 
 app.register(cors, {
   origin: "*",
