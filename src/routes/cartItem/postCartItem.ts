@@ -11,6 +11,9 @@ export async function postCartItem(app: FastifyInstance) {
       schema: {
         summary: 'Post a cartItem',
         tags: ['cartItem'],
+        headers: z.object({
+          authorization: z.string(),
+        }),
         body: z.object({
           productId: z.number().int(),
           qty: z.number().int().positive(),
