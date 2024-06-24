@@ -22,7 +22,7 @@ POST http://localhost:3333/departamento
 Content-Type: application/json
 
 {
-  "name": "moletom"
+  "name": "calca"
 }
 
 ###

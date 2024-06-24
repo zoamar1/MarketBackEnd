@@ -38,6 +38,7 @@ export async function getCartItemsFromCustomer(app: FastifyInstance) {
                   id: true,
                   name: true,
                   price: true,
+                  imagePath: true,
                   priceWithDiscount: true,
                   forSale: true,
                   itemProduct: {
