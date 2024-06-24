@@ -8,16 +8,11 @@ export async function deleteCartItemById(app:FastifyInstance) {
     schema:{
       summary: 'Delete cartItem by ID',
       tags: ['cartItem'],
-      headers: z.object({
-        token: z.string(),
-      }),
-      params: z.object({
-        cartItemId: z.preprocess(val =>Number(val), z.number().int())
-      })
-    }
-  }, async (request, reply) => {
-    const {cartItemId} = request.params
-    
+      body:z.object({cartItemId: z.number().int()})
+      },
+}
+  , async (request, reply) => {
+    const {cartItemId} = request.body
     const cartItem = await prisma.cartItem.findUnique({
       where:{
         id: cartItemId,
