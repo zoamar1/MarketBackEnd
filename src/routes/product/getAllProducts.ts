@@ -2,7 +2,15 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { prisma } from "../../lib/prisma";
 import z from "zod";
+import { base64ToImage } from "../../utils/base64ToFile";
+import path from "path";
+import fs from 'fs'
 
+
+const publicImagesDir = path.join(__dirname, '../../public/images');
+if (!fs.existsSync(publicImagesDir)) {
+  fs.mkdirSync(publicImagesDir, { recursive: true });
+}
 
 export async function getAllProducts(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/produtos', {
@@ -25,6 +33,20 @@ export async function getAllProducts(app: FastifyInstance) {
          products = await prisma.products.findMany({where:{forSale:true}})
       }
       products = await prisma.products.findMany({where:{}})
+
+
+      for (let product of products) {
+        if (product.image) {
+          const imagePath = path.join(publicImagesDir, `${product.slug}.jpg`);
+          try {
+            await base64ToImage(product.image, imagePath);
+            product.imagePath = `http://localhost:3333/images/${product.slug}.jpg`;
+          } catch (error) {
+            console.error(`Error saving image for product ${product.id}:`, error);
+          }
+        }
+      }
+      
       if (products.length === 0) {
         return reply.status(404).send({message: "No products was found"})
       }
