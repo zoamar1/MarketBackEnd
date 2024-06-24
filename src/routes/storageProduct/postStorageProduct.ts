@@ -13,7 +13,7 @@ export async function postStorageProduct(app: FastifyInstance) {
       body:z.object({
         size: z.string(),
         storage: z.number().int(),
-        productName: z.string()
+        productId: z.number().int()
       }),
       response:{
         201:z.object({
@@ -25,12 +25,12 @@ export async function postStorageProduct(app: FastifyInstance) {
       }
     }
   }, async (request, reply) => {
-    const {size, storage, productName} = request.body
+    const {size, storage, productId} = request.body
 
 
     const product = await prisma.products.findFirst({
       where:{
-        slug: productName
+        id: productId
       }
     })
 

@@ -27,8 +27,6 @@ export async function putProduct(app: FastifyInstance) {
                 color: z.string().optional(),
                 slug: z.string().optional(),
                 forSale: z.boolean().optional(),
-                size: z.string().optional(),
-                storage: z.number().nullable().optional(),
             }),
             response: {
                 200: z.object({ message: z.string() }),
@@ -38,7 +36,7 @@ export async function putProduct(app: FastifyInstance) {
         },
     }, async (request, reply) => {
         try {
-            const { productId, name, image, price, priceWithDiscount, departmentId, description, color, slug, forSale, size, storage } = request.body;
+            const { productId, name, image, price, priceWithDiscount, departmentId, description, color, forSale } = request.body;
 
             // Verificar e ajustar valores nulos
             const updatedProductData: any = {};
@@ -50,10 +48,6 @@ export async function putProduct(app: FastifyInstance) {
             if (description !== undefined) updatedProductData.description = description;
             if (color !== undefined) updatedProductData.color = color;
             if (forSale !== undefined) updatedProductData.forSale = forSale;
-            if (size !== undefined && storage !== null && storage !== undefined) {
-                updatedProductData.size = size;
-                updatedProductData.storage = storage;
-            }
 
             const updatedProduct = await prisma.products.update({
                 where: { id: productId },
