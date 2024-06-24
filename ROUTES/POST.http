@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "Gand",
-  "loginId": 3,
+  "loginId": 1,
   "addressId": null
 }
 
@@ -32,7 +32,7 @@ Content-Type: application/json
 {
   "name": "Teste eawbeawba Mengao",
   "price": 350,
-  "image": "C:/Users/Aluno/Pictures/lobao.jfif",
+  "image": "C:/Users/mathe/Imagens/jpg.jpg",
   "priceWithDiscount": 300,
   "discount": 345,
   "description": "6 acha que o flamengo é time",

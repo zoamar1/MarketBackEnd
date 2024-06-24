@@ -5,6 +5,7 @@ import { prisma } from "../../lib/prisma";
 import { base64ToImage } from "../../utils/base64ToFile";
 import fs from "fs";
 import path from "path";
+import { putProduct } from "./putProduct";
 
 const publicImagesDir = path.join(__dirname, '../../public/images');
 if (!fs.existsSync(publicImagesDir)) {
@@ -91,10 +92,10 @@ export async function getProductsFromDepartment(app: FastifyInstance) {
 
     for (let product of products) {
       if (product.image) {
-        const imagePath = path.join(publicImagesDir, `${product.id}.png`);
+        const imagePath = path.join(publicImagesDir, `${product.slug}.jpg`);
         try {
           await base64ToImage(product.image, imagePath);
-          product.image = imagePath;
+          product.imagePath = `http://localhost:3333/images/${product.slug}.jpg`;
         } catch (error) {
           console.error(`Error saving image for product ${product.id}:`, error);
         }

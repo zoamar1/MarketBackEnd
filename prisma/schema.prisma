@@ -21,6 +21,7 @@ model Products {
   color             String
   slug              String
   forSale           Boolean
+  imagePath         String?
 
   itemProduct storageProduct[]
   Orders      Orders[]
